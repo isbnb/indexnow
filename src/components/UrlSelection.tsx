@@ -71,42 +71,42 @@ const UrlSelection: React.FC<UrlSelectionProps> = ({
   };
 
   return (
-    <div className="p-8">
+    <div className="p-4 sm:p-6 lg:p-8">
       <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-8">
-          <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-            <Check className="w-8 h-8 text-green-600" />
+        <div className="text-center mb-6 sm:mb-8">
+          <div className="w-12 h-12 sm:w-16 sm:h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+            <Check className="w-6 h-6 sm:w-8 sm:h-8 text-green-600" />
           </div>
-          <h2 className="text-2xl font-bold text-gray-900 mb-2">Select URLs to Submit</h2>
-          <p className="text-gray-600">
+          <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-2">Select URLs to Submit</h2>
+          <p className="text-gray-600 text-sm sm:text-base leading-relaxed">
             Choose up to {maxSelectable} URLs from your sitemap to submit to search engines via IndexNow.
           </p>
         </div>
 
         {/* Selection Summary */}
         <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
-          <div className="flex items-center justify-between">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
             <div className="flex items-center">
-              <CheckCircle2 className="w-5 h-5 text-blue-600 mr-2" />
-              <span className="font-medium text-blue-900">
+              <CheckCircle2 className="w-5 h-5 text-blue-600 mr-2 flex-shrink-0" />
+              <span className="font-medium text-blue-900 text-sm sm:text-base">
                 {selectedCount} of {maxSelectable} URLs selected
               </span>
             </div>
-            <div className="text-sm text-blue-700">
+            <div className="text-xs sm:text-sm text-blue-700">
               {extractedUrls.length} total URLs available
             </div>
           </div>
           
           {selectedCount >= maxSelectable && (
-            <div className="mt-2 flex items-center text-amber-800 text-sm">
-              <AlertCircle className="w-4 h-4 mr-1" />
+            <div className="mt-2 flex items-center text-amber-800 text-xs sm:text-sm">
+              <AlertCircle className="w-4 h-4 mr-1 flex-shrink-0" />
               Maximum selection limit reached
             </div>
           )}
         </div>
 
         {/* Search and Controls */}
-        <div className="flex flex-col md:flex-row gap-4 mb-6">
+        <div className="flex flex-col sm:flex-row gap-4 mb-6">
           <div className="flex-1 relative">
             <Search className="w-5 h-5 text-gray-400 absolute left-3 top-1/2 transform -translate-y-1/2" />
             <input
@@ -114,14 +114,14 @@ const UrlSelection: React.FC<UrlSelectionProps> = ({
               placeholder="Search URLs..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              className="w-full pl-10 pr-4 py-2 sm:py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm sm:text-base"
             />
           </div>
           
           <button
             onClick={toggleSelectAll}
             disabled={!canSelectMore && !selectAll}
-            className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+            className="px-4 py-2 sm:py-3 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed text-sm sm:text-base whitespace-nowrap"
           >
             {selectAll ? 'Deselect All' : `Select ${Math.min(maxSelectable, filteredUrls.length)}`}
           </button>
@@ -129,11 +129,11 @@ const UrlSelection: React.FC<UrlSelectionProps> = ({
 
         {/* URL List */}
         <div className="bg-white border border-gray-200 rounded-lg overflow-hidden mb-6">
-          <div className="max-h-96 overflow-y-auto">
+          <div className="max-h-64 sm:max-h-96 overflow-y-auto">
             {filteredUrls.length === 0 ? (
-              <div className="p-8 text-center text-gray-500">
-                <Search className="w-12 h-12 text-gray-300 mx-auto mb-4" />
-                <p>No URLs match your search criteria.</p>
+              <div className="p-6 sm:p-8 text-center text-gray-500">
+                <Search className="w-10 h-10 sm:w-12 sm:h-12 text-gray-300 mx-auto mb-4" />
+                <p className="text-sm sm:text-base">No URLs match your search criteria.</p>
               </div>
             ) : (
               <div className="divide-y divide-gray-200">
@@ -144,7 +144,7 @@ const UrlSelection: React.FC<UrlSelectionProps> = ({
                   return (
                     <div
                       key={urlObj.url}
-                      className={`p-4 hover:bg-gray-50 transition-colors duration-200 ${
+                      className={`p-3 sm:p-4 hover:bg-gray-50 transition-colors duration-200 ${
                         !canSelect && !isSelected ? 'opacity-50' : ''
                       }`}
                     >
@@ -154,10 +154,10 @@ const UrlSelection: React.FC<UrlSelectionProps> = ({
                           checked={isSelected}
                           onChange={() => toggleUrl(index)}
                           disabled={!canSelect}
-                          className="mt-1 w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500 disabled:opacity-50"
+                          className="mt-1 w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500 disabled:opacity-50 flex-shrink-0"
                         />
-                        <div className="ml-3 flex-1">
-                          <div className={`text-sm break-all ${
+                        <div className="ml-3 flex-1 min-w-0">
+                          <div className={`text-xs sm:text-sm break-all ${
                             isSelected ? 'text-blue-900 font-medium' : 'text-gray-700'
                           }`}>
                             {urlObj.url}
@@ -173,10 +173,10 @@ const UrlSelection: React.FC<UrlSelectionProps> = ({
         </div>
 
         {/* Navigation */}
-        <div className="flex justify-between">
+        <div className="flex flex-col sm:flex-row justify-between gap-4">
           <button
             onClick={onBack}
-            className="flex items-center px-6 py-3 text-gray-600 hover:text-gray-800 hover:bg-gray-100 rounded-lg transition-all duration-200"
+            className="flex items-center justify-center px-6 py-3 text-gray-600 hover:text-gray-800 hover:bg-gray-100 rounded-lg transition-all duration-200 text-sm sm:text-base"
           >
             <ArrowLeft className="w-5 h-5 mr-2" />
             Back
@@ -185,7 +185,7 @@ const UrlSelection: React.FC<UrlSelectionProps> = ({
           <button
             onClick={handleContinue}
             disabled={selectedCount === 0}
-            className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all duration-200 flex items-center font-medium disabled:opacity-50 disabled:cursor-not-allowed"
+            className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all duration-200 flex items-center justify-center font-medium disabled:opacity-50 disabled:cursor-not-allowed text-sm sm:text-base"
           >
             Continue with {selectedCount} URLs
             <ArrowRight className="w-5 h-5 ml-2" />

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Globe, Zap, Key } from 'lucide-react';
+import { Zap, Key, Rocket } from 'lucide-react';
 
 const Header: React.FC = () => {
   const navigateToApi = () => {
@@ -11,8 +11,15 @@ const Header: React.FC = () => {
     window.history.pushState({}, '', '/');
     window.dispatchEvent(new PopStateEvent('popstate'));
   };
+
+  const navigateToAutomate = () => {
+    window.history.pushState({}, '', '/automate');
+    window.dispatchEvent(new PopStateEvent('popstate'));
+  };
   
-  const isApiPage = window.location.pathname === '/api' || window.location.pathname === '/api/';
+  const currentPath = window.location.pathname;
+  const isApiPage = currentPath === '/api' || currentPath === '/api/';
+  const isAutomatePage = currentPath === '/automate' || currentPath === '/automate/';
   
   return (
     <header className="bg-white shadow-sm border-b">
@@ -37,8 +44,9 @@ const Header: React.FC = () => {
               </div>
             </button>
           </div>
+          
           {/* Navigation Links */}
-          <nav className="flex items-center space-x-4 sm:space-x-6">
+          <nav className="flex items-center space-x-2 sm:space-x-4">
             <button
               onClick={navigateToApi}
               className={`flex items-center space-x-1 px-3 py-2 rounded-lg transition-all duration-200 text-sm sm:text-base ${
@@ -48,19 +56,22 @@ const Header: React.FC = () => {
               }`}
             >
               <Key className="w-4 h-4" />
-              <span className="hidden sm:inline">API Key Generator</span>
+              <span className="hidden sm:inline">API Key</span>
               <span className="sm:hidden">API</span>
             </button>
             
-            <a
-              href="https://www.indexnow.org"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-gray-600 hover:text-blue-600 transition-colors duration-200 flex items-center space-x-1"
+            <button
+              onClick={navigateToAutomate}
+              className={`flex items-center space-x-1 px-3 py-2 rounded-lg transition-all duration-200 text-sm sm:text-base font-medium ${
+                isAutomatePage
+                  ? 'bg-gradient-to-r from-purple-600 to-pink-600 text-white shadow-lg'
+                  : 'bg-gradient-to-r from-purple-600 to-pink-600 text-white hover:from-purple-700 hover:to-pink-700 shadow-md hover:shadow-lg'
+              }`}
             >
-              <Globe className="w-4 h-4" />
-              <span className="hidden md:inline">IndexNow.org</span>
-            </a>
+              <Rocket className="w-4 h-4" />
+              <span className="hidden sm:inline">Automate</span>
+              <span className="sm:hidden">Pro</span>
+            </button>
           </nav>
         </div>
       </div>

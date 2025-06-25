@@ -19,10 +19,10 @@
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://bucolic-alfajores-13f708.netlify.app/" />
+    <meta property="og:url" content="" />
     <meta property="og:title" content="IndexNow Submitter - Instant Search Engine Indexing Tool" />
     <meta property="og:description" content="Submit your sitemap URLs instantly to search engines using IndexNow protocol. Generate API keys, extract URLs from sitemaps, and boost your SEO with fast indexing." />
-    <meta property="og:image" content="https://bucolic-alfajores-13f708.netlify.app/og-image.png" />
+    <meta property="og:image" content="" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:image:alt" content="IndexNow Submitter - Fast-track your SEO with instant indexing" />
@@ -30,14 +30,14 @@
     
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content="https://bucolic-alfajores-13f708.netlify.app/" />
+    <meta property="twitter:url" content="" />
     <meta property="twitter:title" content="IndexNow Submitter - Instant Search Engine Indexing Tool" />
     <meta property="twitter:description" content="Submit your sitemap URLs instantly to search engines using IndexNow protocol. Generate API keys, extract URLs from sitemaps, and boost your SEO with fast indexing." />
-    <meta property="twitter:image" content="https://bucolic-alfajores-13f708.netlify.app/og-image.png" />
+    <meta property="twitter:image" content="" />
     <meta property="twitter:image:alt" content="IndexNow Submitter - Fast-track your SEO with instant indexing" />
     
-    <!-- Canonical URL -->
-    <link rel="canonical" href="https://bucolic-alfajores-13f708.netlify.app/" />
+    <!-- Canonical URL - Will be set dynamically -->
+    <link rel="canonical" href="" />
     
     <!-- Additional SEO Meta Tags -->
     <meta name="theme-color" content="#2563eb" />
@@ -50,7 +50,7 @@
       "@type": "WebApplication",
       "name": "IndexNow Submitter",
       "description": "Submit your sitemap URLs instantly to search engines using IndexNow protocol. Generate API keys, extract URLs from sitemaps, and boost your SEO with fast indexing.",
-      "url": "https://bucolic-alfajores-13f708.netlify.app/",
+      "url": "",
       "applicationCategory": "SEO Tool",
       "operatingSystem": "Web Browser",
       "offers": {
@@ -66,7 +66,7 @@
         "Mobile-friendly interface",
         "Free to use"
       ],
-      "screenshot": "https://bucolic-alfajores-13f708.netlify.app/og-image.png",
+      "screenshot": "",
       "author": {
         "@type": "Organization",
         "name": "IndexNow Submitter"
@@ -84,13 +84,13 @@
           "@type": "ListItem",
           "position": 1,
           "name": "Home",
-          "item": "https://bucolic-alfajores-13f708.netlify.app/"
+          "item": ""
         },
         {
           "@type": "ListItem",
           "position": 2,
           "name": "API Key Generator",
-          "item": "https://bucolic-alfajores-13f708.netlify.app/api"
+          "item": ""
         }
       ]
     }
@@ -103,7 +103,7 @@
       "@type": "HowTo",
       "name": "How to Submit URLs to Search Engines with IndexNow",
       "description": "Step-by-step guide to submit your website URLs to search engines using the IndexNow protocol",
-      "image": "https://bucolic-alfajores-13f708.netlify.app/og-image.png",
+      "image": "",
       "totalTime": "PT10M",
       "estimatedCost": {
         "@type": "MonetaryAmount",
@@ -115,31 +115,31 @@
           "@type": "HowToStep",
           "name": "Enter Sitemap URL",
           "text": "Provide the URL to your XML sitemap",
-          "image": "https://bucolic-alfajores-13f708.netlify.app/og-image.png"
+          "image": ""
         },
         {
           "@type": "HowToStep",
           "name": "Extract URLs",
           "text": "Parse and extract URLs from your sitemap",
-          "image": "https://bucolic-alfajores-13f708.netlify.app/og-image.png"
+          "image": ""
         },
         {
           "@type": "HowToStep",
           "name": "Select URLs",
           "text": "Choose up to 100 URLs to submit",
-          "image": "https://bucolic-alfajores-13f708.netlify.app/og-image.png"
+          "image": ""
         },
         {
           "@type": "HowToStep",
           "name": "Configure API",
           "text": "Set up your IndexNow API credentials",
-          "image": "https://bucolic-alfajores-13f708.netlify.app/og-image.png"
+          "image": ""
         },
         {
           "@type": "HowToStep",
           "name": "Submit & Review Results",
           "text": "Submit URLs and review submission results",
-          "image": "https://bucolic-alfajores-13f708.netlify.app/og-image.png"
+          "image": ""
         }
       ]
     }
@@ -148,5 +148,54 @@
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
+    
+    <!-- Dynamic Meta Tags Script -->
+    <script>
+      // Set dynamic URLs based on current domain
+      (function() {
+        const currentUrl = window.location.origin;
+        const currentPath = window.location.href;
+        const ogImageUrl = currentUrl + '/thumbnail.png';
+        
+        // Update canonical URL
+        document.querySelector('link[rel="canonical"]').href = currentPath;
+        
+        // Update Open Graph URLs
+        document.querySelector('meta[property="og:url"]').content = currentPath;
+        document.querySelector('meta[property="og:image"]').content = ogImageUrl;
+        
+        // Update Twitter URLs
+        document.querySelector('meta[property="twitter:url"]').content = currentPath;
+        document.querySelector('meta[property="twitter:image"]').content = ogImageUrl;
+        
+        // Update structured data
+        const scripts = document.querySelectorAll('script[type="application/ld+json"]');
+        scripts.forEach(script => {
+          const data = JSON.parse(script.textContent);
+          
+          // Update WebApplication schema
+          if (data['@type'] === 'WebApplication') {
+            data.url = currentUrl;
+            data.screenshot = ogImageUrl;
+          }
+          
+          // Update BreadcrumbList schema
+          if (data['@type'] === 'BreadcrumbList') {
+            data.itemListElement[0].item = currentUrl;
+            data.itemListElement[1].item = currentUrl + '/api';
+          }
+          
+          // Update HowTo schema
+          if (data['@type'] === 'HowTo') {
+            data.image = ogImageUrl;
+            data.step.forEach(step => {
+              step.image = ogImageUrl;
+            });
+          }
+          
+          script.textContent = JSON.stringify(data);
+        });
+      })();
+    </script>
   </body>
 </html>

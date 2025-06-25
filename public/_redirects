@@ -1,0 +1,21 @@
+# Netlify redirects file
+# Handle client-side routing for React SPA
+
+# Redirect all non-file requests to index.html for client-side routing
+/*    /index.html   200
+
+# Optional: Redirect common misspellings or old URLs
+/sitemap-submitter    /    301
+/api-generator        /api  301
+/indexnow            /     301
+
+# Force HTTPS (optional, Netlify does this by default)
+# http://indexnow-submitter.netlify.app/*  https://indexnow-submitter.netlify.app/:splat  301!
+
+# Custom headers for security and performance
+/*
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
+  X-XSS-Protection: 1; mode=block
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=()

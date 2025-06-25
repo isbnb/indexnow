@@ -274,53 +274,6 @@ $response = file_get_contents('https://api.indexnow.org/IndexNow', false,
             </div>
           </div>
         </div>
-
-        {/* Code Examples */}
-        <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-6 sm:p-8 mb-8">
-          <div className="text-center mb-8">
-            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4">Code Examples</h2>
-            <p className="text-gray-600 text-base sm:text-lg max-w-2xl mx-auto">
-              Use these code examples to integrate IndexNow API calls into your application.
-            </p>
-          </div>
-
-          <div className="max-w-4xl mx-auto">
-            {/* Tab Navigation */}
-            <div className="flex flex-wrap border-b border-gray-200 mb-6">
-              {Object.keys(codeExamples).map((lang) => (
-                <button
-                  key={lang}
-                  onClick={() => setActiveTab(lang as keyof typeof codeExamples)}
-                  className={`px-4 py-2 font-medium text-sm border-b-2 transition-colors duration-200 ${
-                    activeTab === lang
-                      ? 'border-blue-600 text-blue-600'
-                      : 'border-transparent text-gray-500 hover:text-gray-700'
-                  }`}
-                >
-                  {lang.toUpperCase()}
-                </button>
-              ))}
-            </div>
-
-            {/* Code Display */}
-            <div className="bg-gray-900 rounded-lg p-6 overflow-x-auto">
-              <pre className="text-green-400 text-sm">
-                <code>{codeExamples[activeTab]}</code>
-              </pre>
-            </div>
-
-            <div className="mt-4 flex justify-end">
-              <button
-                onClick={() => navigator.clipboard.writeText(codeExamples[activeTab])}
-                className="flex items-center px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors duration-200 text-sm font-medium"
-              >
-                <Copy className="w-4 h-4 mr-2" />
-                Copy Code
-              </button>
-            </div>
-          </div>
-        </div>
-
         {/* Additional Resources */}
         <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-6 sm:p-8">
           <div className="text-center mb-8">

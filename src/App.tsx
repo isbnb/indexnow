@@ -8,6 +8,8 @@ import UrlSelection from './components/UrlSelection';
 import IndexNowConfig from './components/IndexNowConfig';
 import SubmissionResults from './components/SubmissionResults';
 import ApiKeyGenerator from './components/ApiKeyGenerator';
+import AutomatePage from './components/AutomatePage';
+import NotFound from './components/NotFound';
 
 export interface ExtractedUrl {
   url: string;
@@ -28,7 +30,7 @@ export interface SubmissionResult {
 }
 
 function App() {
-  const [currentPage, setCurrentPage] = useState<'home' | 'api'>('home');
+  const [currentPage, setCurrentPage] = useState<'home' | 'api' | 'automate' | '404'>('home');
   const [currentStep, setCurrentStep] = useState(1);
   const [sitemapUrl, setSitemapUrl] = useState('');
   const [extractedUrls, setExtractedUrls] = useState<ExtractedUrl[]>([]);
@@ -44,8 +46,12 @@ function App() {
     const path = window.location.pathname;
     if (path === '/api' || path === '/api/') {
       setCurrentPage('api');
-    } else {
+    } else if (path === '/automate' || path === '/automate/') {
+      setCurrentPage('automate');
+    } else if (path === '/' || path === '') {
       setCurrentPage('home');
+    } else {
+      setCurrentPage('404');
     }
 
     // Handle browser back/forward
@@ -53,8 +59,12 @@ function App() {
       const path = window.location.pathname;
       if (path === '/api' || path === '/api/') {
         setCurrentPage('api');
-      } else {
+      } else if (path === '/automate' || path === '/automate/') {
+        setCurrentPage('automate');
+      } else if (path === '/' || path === '') {
         setCurrentPage('home');
+      } else {
+        setCurrentPage('404');
       }
     };
 
@@ -71,6 +81,27 @@ function App() {
     window.history.pushState({}, '', '/');
     setCurrentPage('home');
   };
+
+  const navigateToAutomate = () => {
+    window.history.pushState({}, '', '/automate');
+    setCurrentPage('automate');
+  };
+
+  if (currentPage === '404') {
+    return <NotFound />;
+  }
+
+  if (currentPage === 'automate') {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-purple-50 via-white to-pink-50 flex flex-col">
+        <Header />
+        <main className="flex-1">
+          <AutomatePage />
+        </main>
+        <Footer />
+      </div>
+    );
+  }
 
   if (currentPage === 'api') {
     return (
@@ -253,8 +284,16 @@ function App() {
                 Fast, reliable, and completely free.
               </p>
               
-              {/* CTA Button for API Key Generator */}
+              {/* CTA Buttons */}
               <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                <button
+                  onClick={navigateToAutomate}
+                  className="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-6 py-3 rounded-lg hover:from-purple-700 hover:to-pink-700 focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 focus:ring-offset-blue-600 transition-all duration-200 flex items-center justify-center font-medium shadow-lg"
+                >
+                  Automate for $5/month
+                  <ArrowRight className="w-5 h-5 ml-2" />
+                </button>
+                
                 <button
                   onClick={navigateToApi}
                   className="bg-white text-blue-600 px-6 py-3 rounded-lg hover:bg-blue-50 focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-blue-600 transition-all duration-200 flex items-center justify-center font-medium"
@@ -262,8 +301,11 @@ function App() {
                   Generate API Key
                   <ArrowRight className="w-5 h-5 ml-2" />
                 </button>
-                <span className="text-blue-200 text-sm">Need an API key first?</span>
               </div>
+              
+              <p className="text-blue-200 text-sm mt-4">
+                Try our free manual tool below or upgrade to premium automation
+              </p>
             </div>
           </div>
         </div>

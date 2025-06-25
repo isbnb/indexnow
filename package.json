@@ -1,8 +1,14 @@
 {
-  "name": "vite-react-typescript-starter",
+  "name": "indexnowsite",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
+  "description": "Submit Your Sitemap to Search Engines",
+  "author": {
+    "name": "Bookllo Publishing",
+    "website": "https://bookllo.com",
+    "email": "contact@bookllo.com"
+  },
   "scripts": {
     "dev": "vite",
     "build": "vite build",

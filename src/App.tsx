@@ -276,6 +276,17 @@ function App() {
         <div className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
             <div className="text-center">
+              {/* Badge Image */}
+              <div className="mb-6 sm:mb-8">
+                <a href="https://bolt.new" target="_blank" rel="noopener noreferrer">
+                  <img 
+                    src="/bolt.png" 
+                    alt="Badge" 
+                    className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-24 lg:h-24 mx-auto object-contain"
+                  />
+                </a>
+              </div>
+              
               <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-3 sm:mb-4">
                 Submit Your Sitemap to Search Engines
               </h2>

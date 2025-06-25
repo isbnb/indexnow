@@ -35,9 +35,9 @@ const Header: React.FC = () => {
                 <Zap className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
               </div>
               <div>
-                <h1 className="text-lg sm:text-xl lg:text-2xl font-bold text-gray-900">
+                <p className="text-lg sm:text-xl lg:text-2xl font-bold text-gray-900">
                   IndexNow Submitter
-                </h1>
+                </p>
                 <p className="text-xs sm:text-sm text-gray-600 hidden sm:block">
                   Fast-track your SEO with instant indexing
                 </p>

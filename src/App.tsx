@@ -278,7 +278,7 @@ function App() {
             <div className="text-center">
               {/* Badge Image */}
               <div className="mb-6 sm:mb-8">
-                <a href="https://bolt.new" target="_blank" rel="noopener noreferrer">
+                <a href="https://bolt.new/?rid=q6kk8k" target="_blank" rel="noopener noreferrer">
                   <img 
                     src="/bolt.png" 
                     alt="Badge" 

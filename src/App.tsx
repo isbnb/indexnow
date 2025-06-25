@@ -278,7 +278,7 @@ function App() {
             <div className="text-center">
               {/* Badge Image */}
               <div className="mb-6 sm:mb-8">
-                <a href="https://bolt.new/?rid=q6kk8k" target="_blank" rel="noopener noreferrer">
+                <a href="https://bolt.new" target="_blank" rel="noopener noreferrer">
                   <img 
                     src="/bolt.png" 
                     alt="Badge" 
@@ -287,9 +287,9 @@ function App() {
                 </a>
               </div>
               
-              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-3 sm:mb-4">
+              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-3 sm:mb-4">
                 Submit Your Sitemap to Search Engines
-              </h2>
+              </h1>
               <p className="text-blue-100 text-base sm:text-lg lg:text-xl max-w-3xl mx-auto leading-relaxed mb-6">
                 Use IndexNow protocol to instantly notify search engines about your content updates. 
                 Fast, reliable, and completely free.
